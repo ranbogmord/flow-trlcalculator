@@ -1,0 +1,17 @@
+{
+  "name": "ranbogmord-tlcalc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "code.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "types-p42-flow": "^1.0.1",
+    "typescript": "^5.0.3"
+  }
+}

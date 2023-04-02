@@ -1,0 +1,53 @@
+#ranbogmord-trlcalc {
+    position: absolute;
+    border-radius: 0.4em;
+    display: none;
+    pointer-events: all;
+
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 0.5em 0.5em;
+}
+
+#ranbogmord-trlcalc.visible {
+    display: block;
+}
+
+#ranbogmord-trlcalc table {
+    border-collapse: collapse;
+}
+
+#ranbogmord-trlcalc th {
+    vertical-align: top;
+    text-align: left;
+    padding: 0.2em;
+}
+
+#ranbogmord-trlcalc td {
+    text-align: right;
+}
+
+#ranbogmord-trlcalc tr {
+    border-bottom: 1px solid #fff;
+}
+
+#ranbogmord-trlcalc thead th {
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+    padding: 0.2em 0.6em;
+}
+
+#ranbogmord-trlcalc tbody td,
+#ranbogmord-trlcalc tbody th {
+    border: 1px solid #fff;
+    padding: 0.2em 0.6em;
+}
+
+#ranbogmord-trlcalc thead tr:first-child th {
+    text-align: center;
+    border: none;
+    vertical-align: center;
+}
+
+#ranbogmord-trlcalc tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}
