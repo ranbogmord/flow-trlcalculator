@@ -85,7 +85,6 @@ search(['trl'], (query, callback) => {
     if (tlStr) {
         tl = parseInt(tlStr);
     }
-    console.log(tl, tlStr);
     if (tl || tl === 0) {
         ta += tl;
     }
