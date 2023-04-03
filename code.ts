@@ -13,18 +13,31 @@ const formatFl = (ft: number) => {
     return `FL${ft / 100}`;
 }
 
-const generateTableRows = (from: number = 500, to: number = 10000) => {
+const calculateTransitionLevel = (qnh: number, altitude: number): number => {
+    let trl = (altitude + ((1013.2 - qnh) * 26.7)) / 100;
+    trl = Math.floor(trl);
+    let rest = trl % 5;
+    if (rest !== 0) {
+        trl = trl - rest + 5;
+    }
+
+    return trl * 100;
+};
+
+const generateTableRows = (from: number = 3000, to: number = 7000) => {
     const rows: string[][] = [];
     for (let i = from; i <= to; i += 500) {
+        const adjusted = i + 1500;
+
         rows.push([
             `${i}`,
-            `${formatFl(i + 2000)}`,
-            `${formatFl(i + 1500)}`,
-            `${formatFl(i + 1000)}`,
-            `${formatFl(i + 500)}`,
-            `${formatFl(i)}`,
-            `${formatFl(i - 500)}`,
-            `${formatFl(i - 1000)}`
+            `${formatFl(calculateTransitionLevel(959, adjusted))}`,
+            `${formatFl(calculateTransitionLevel(977, adjusted))}`,
+            `${formatFl(calculateTransitionLevel(995, adjusted))}`,
+            `${formatFl(calculateTransitionLevel(1013, adjusted))}`,
+            `${formatFl(calculateTransitionLevel(1031, adjusted))}`,
+            `${formatFl(calculateTransitionLevel(1050, adjusted))}`,
+            `${formatFl(calculateTransitionLevel(1068, adjusted))}`
         ]);
     }
 
@@ -98,19 +111,18 @@ search(['trl'], (query, callback) => {
         tl = parseInt(tlStr);
     }
 
-    if (tl) {
+    console.log(tl, tlStr);
+    
+    if (tl || tl === 0) {
         ta += tl;
+    } else {
+        ta += 1500; // Default transition layer
     }
     
-    let trl = (ta + ((1013.2 - qnh) * 26.7)) / 100;
-    trl = Math.floor(trl);
-    let rest = trl % 5;
-    if (rest !== 0) {
-        trl = trl - rest + 5;
-    }
+    const trl = calculateTransitionLevel(qnh, ta);
 
     callback([{
         uid: `trlcalc-${qnh}-${tl}`,
-        label: `Transition Level: FL${trl}`
+        label: `Transition Level: ${formatFl(trl)}`
     }])
 });
